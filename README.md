@@ -53,7 +53,7 @@ To run the app locally, follow these steps:
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/thisisnitishyadav/Job-Listing-App.git
+git clone https://github.com/thisisnitishyadav/Agriculture-Management-App.git
 cd agriculture-app
 ```
 ### 2. Set up the Backend
@@ -76,12 +76,12 @@ touch .env
 
 - Add env variables:
 ```bash
-PORT=5001
-NODE_ENV=development
-MONGO_URI=your-mongo-database-url
-JWT_SECRET=your jwt secret
-RAZORPAY_KEY_ID=your razorpay id
-RAZORPAY_KEY_SECRET=your razorpay secret
+PORT=5001;
+NODE_ENV=development;
+MONGO_URI=your-mongo-database-url;
+JWT_SECRET=your jwt secret;
+RAZORPAY_KEY_ID=your razorpay id;
+RAZORPAY_KEY_SECRET=your razorpay secret;
 ```
 
 - Start the Server
