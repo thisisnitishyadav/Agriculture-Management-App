@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { processPayment } from '../api/payments';
+import { processPayment } from '../api/payment';
 
 const Payment = () => {
   const [amount, setAmount] = useState('');
@@ -16,8 +16,8 @@ const Payment = () => {
   };
 
   return (
-    <div className="p-4">
-      <h2 className="text-2xl font-bold mb-4">Make a Payment</h2>
+    <div className="p-4 flex flex-col justify-center items-center my-8">
+      <h2 className="text-4xl font-bold mb-4">Subscribe now and become premium member</h2>
       <input
         type="number"
         placeholder="Amount"
@@ -35,9 +35,9 @@ const Payment = () => {
       </select>
       <button
         onClick={handlePayment}
-        className="bg-blue-500 text-white px-4 py-2 rounded"
+        className="bg-blue-500 text-xl text-white px-4 py-2 rounded"
       >
-        Pay Now
+        Continue with Premium
       </button>
       {message && <p className="mt-4">{message}</p>}
     </div>

@@ -8,6 +8,6 @@ export const login = async (credentials) => {
 };
 
 export const signup = async (userData) => {
-  const response = await axios.post(`http://localhost:5001/api/auth/signup`, userData);
+  const response = await axios.post(`${API_URL}/api/auth/signup`, userData);
   return response.data;
 };

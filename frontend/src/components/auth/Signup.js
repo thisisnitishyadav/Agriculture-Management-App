@@ -1,16 +1,20 @@
 import React, { useState } from 'react';
 import { signup } from '../../api/auth';
+import { Link } from 'react-router-dom';
+import FieldForm from '../dashboard/FieldForm';
 
 const Signup = () => {
   const[name,setName]=useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [message, setMessage] = useState('');
+  const [userId, setUserId] = useState(null);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       const response = await signup({name, email, password });
+      setUserId(response.userId);
       setMessage('Signup successful! Please login.');
     } catch (error) {
       setMessage('Signup failed: ' + error.message);
@@ -58,7 +62,13 @@ const Signup = () => {
           Signup
         </button>
       </form>
+      <div className='my-4'>
+        Already have an account? <span className='text-blue-500 cursor-pointer underline'>
+          <Link to='/login'>Login</Link>
+          </span>
+      </div>
       {message && <p className="mt-4 text-gray-600">{message}</p>}
+      {userId && <FieldForm userId={userId} />}
     </div>
   );
 };

@@ -1,19 +1,22 @@
 import React, { useState } from 'react';
 import { createField } from '../../api/fields';
 
-const FieldForm = ({ onFieldAdded }) => {
+const FieldForm = ({ userId,onFieldAdded }) => {
   const [name, setName] = useState('');
-  const [location, setLocation] = useState('');
+  // const [location, setLocation] = useState('');
+  const [latitude,setLatitude]=useState('');
+  const [longitude,setLongitude]=useState('');
   const [cropType, setCropType] = useState('');
   const [areaSize, setAreaSize] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const newField = await createField({ name, location, cropType, areaSize });
-      onFieldAdded(newField);
+      const newField = await createField({ user: userId, name, location: { latitude, longitude }, cropType, areaSize });
+      if (onFieldAdded) onFieldAdded(newField);
       setName('');
-      setLocation('');
+      setLatitude('');
+      setLongitude('');
       setCropType('');
       setAreaSize('');
     } catch (error) {
@@ -36,13 +39,22 @@ const FieldForm = ({ onFieldAdded }) => {
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 mb-2">Location</label>
+        <div className='flex gap-4'>
         <input
-          type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
+          type="latitude"
+          value={latitude}
+          onChange={(e) => setLatitude(e.target.value)}
           className="w-full px-3 py-2 border rounded"
           required
         />
+         <input
+          type="longitude"
+          value={longitude}
+          onChange={(e) => setLongitude(e.target.value)}
+          className="w-full px-3 py-2 border rounded"
+          required
+        />
+        </div>
       </div>
       <div className="mb-4">
         <label className="block text-gray-700 mb-2">Crop Type</label>
@@ -55,7 +67,7 @@ const FieldForm = ({ onFieldAdded }) => {
         />
       </div>
       <div className="mb-4">
-        <label className="block text-gray-700 mb-2">Area Size</label>
+        <label className="block text-gray-700 mb-2">Area Size (in acre)</label>
         <input
           type="text"
           value={areaSize}
